@@ -1,7 +1,7 @@
 ﻿@model Ator
 
 @{
-    ViewData["Title"] = "Adicione um novo ator"
+    ViewData["Title"] = "Adicione um novo ator";
 }
 
 <div class="row text">
@@ -13,29 +13,30 @@
                 <div class="col-md-8 offset-2"> 
                     <form asp-action="Criar">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    </form>
-                    <div class="form-group text-center"></div>
-                        <img id="FotoDePerfilPreview"/>
-                    <div class="form-group">
-                        <label asp-for="FotoDePerfilURL" class="control-label"></label>
-                        <input asp-for="FotoDePerfilURL" class="form-control"/>
-                        <span asp-validation-for="FotoDePerfilURL" class=text-danger></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="NomeCompleto" class="control-label"></label>
-                        <input asp-for="NomeCompleto" class="form-control"/>
-                        <span asp-validation-for="NomeCompleto" class=text-danger></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Bio" class="control-label"></label>
-                        <input asp-for="Bio" class="form-control"/>
-                        <span asp-validation-for="Bio" class=text-danger></span>
-                    </div>
 
-                    <div class="form-group">
-                        <input type="submit" value="Criar" class="btn btn-outline-success float-right"/>
-                        <a class="btn btn-outline-secondary" asp-action="Index" asp-controller="Show All"></a>
-                    </div>
+                        <div class="form-group text-center"></div>
+                        <img id="FotoDePerfilPreview" class="rounded-circle align-content-center" style="max-width: 150px" />
+                        <div class="form-group">
+                            <label asp-for="FotoDePerfilURL" class="control-label"></label>
+                            <input asp-for="FotoDePerfilURL" class="form-control"/>
+                            <span asp-validation-for="FotoDePerfilURL" class=text-danger></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="NomeCompleto" class="control-label"></label>
+                            <input asp-for="NomeCompleto" class="form-control"/>
+                            <span asp-validation-for="NomeCompleto" class=text-danger></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Bio" class="control-label"></label>
+                            <input asp-for="Bio" class="form-control"/>
+                            <span asp-validation-for="Bio" class=text-danger></span>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" value="Criar" class="btn btn-outline-success float-right"/>
+                        <a class="btn btn-outline-secondary" asp-action="Index">Ver Todos</a>
+                        </div>
+                    </form>
             </div>
         </div>
     </div>
@@ -44,6 +45,11 @@
 @section Scripts
 {
     <script>
+
+        $(document).ready(function () {
+            var output = document.getElementById('FotoDePerfilPreview');
+            output.src = $(this).val('FotoDePerfilPreview');
+        })
         $("#FotoDePerfilURL").on("change", function(){
             var output = document.getElementById('FotoDePerfilPreview');
             output.src = $(this).val()

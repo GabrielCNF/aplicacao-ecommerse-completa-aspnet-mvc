@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -6,11 +6,7 @@
     <title>@ViewData["Title"] - eTickets</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
 </head>
 <body>
     <header>
@@ -23,25 +19,37 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                     <li classs="navbar-nav flex-grow-1">
-                         <a class="nav-link text-dark" asp-controller="Filmes" asp-action="Index"> <i class="badge-info bi-film"></i>Filmes</a>
-                     </li>
-                     <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-target="#navbarDropdown">
-                            <i class="badge-info bi-gear"></i> Gerência 
-                        </a>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Filmes" asp-action="Index"><i class="bi bi-film"></i> Filmes</a>
+                        </li>
 
-                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                             <a class="dropdown-item" asp-controller="Cinemas" asp-action="Index"> <i class="bi bi-camera-reels"> </i>Cinemas</a>
-                             <a class="dropdown-item" asp-controller="Produtores" asp-action="Index"> <i class="bi bi-headset"> </i>Produtores</a>
-                             <a class="dropdown-item" asp-controller="Atores" asp-action="Index"> <i class="bi bi-person-square"> </i>Atores</a>
-                         </div>
-                     </li>
+                       @*  @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        { *@
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="bi bi-gear"></i> Gerência
+                                </a>
+
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" asp-controller="Cinemas" asp-action="Index"><i class="bi bi-camera-reels"></i> Cinemas</a>
+                                    <a class="dropdown-item" asp-controller="Produtores" asp-action="Index"><i class="bi bi-headset"></i> Produtores</a>
+                                    <a class="dropdown-item" asp-controller="Atores" asp-action="Index"><i class="bi bi-person-square"></i> Atores</a>
+                                </div>
+                            </li>
+                        @* } *@
+
                     </ul>
-                    <form class="form-inline my-2 my-lg-0" asp-controller="Filmes" asp-action="Filtro" style="padding-right: 25px;">
-                        <input name="searchString" type="text" class="form-control" placeholder="Procure por um filme...">
-                        <button class="btn btn-outline-sucess my-2 my-sm-0" type="submit"> <i class="bi bi-search"> </i> </button>
+
+                    <form class="form-inline my-2 my-lg-0" asp-controller="Filmes" asp-action="Filter" style="padding-right: 25px;">
+                        <input name="searchString" type="text" class="form-control" placeholder="Procure por um filme..." aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="bi bi-search"></i></button>
                     </form>
+
+                   @*  <ul class="navbar-nav">
+                        @await Component.InvokeAsync("ShoppingCartSummary")
+                    </ul> *@
+
+                    @* <partial name="_Identity.cshtml" /> *@
                 </div>
             </div>
         </nav>
@@ -50,16 +58,19 @@
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
+
     </div>
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - eTickets
+            &copy; 2023 - eTickets
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

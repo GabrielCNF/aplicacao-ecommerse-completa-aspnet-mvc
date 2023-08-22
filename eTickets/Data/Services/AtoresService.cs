@@ -18,7 +18,8 @@ namespace eTickets.Data.Services
         }
         public void Add(Ator ator)
         {
-            throw new NotImplementedException();
+            _context.Atores.Add(ator);
+            _context.SaveChanges();
         }
         public void Delete(int id)
         {
